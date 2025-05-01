@@ -24,7 +24,7 @@ services:
       KONG_PASSWORD: test
     command: kong migrations bootstrap
     depends_on:
-      db:
+      - db
     networks:
       - kong-net
 
@@ -32,7 +32,7 @@ services:
     image: kong/kong-gateway:3.10.0.1
     container_name: kong-gateway
     depends_on:
-      db:
+      - db
     environtment:
       KONG_DATABASE: postgres
       KONG_PG_HOST: kong-database
